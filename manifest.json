@@ -1,0 +1,27 @@
+{
+  "manifest_version": 2,
+  "name": "Wallet",
+  "description": "Wallet extension",
+  "version": "1.0.0",
+  "icons": {
+    "16": "wallet_icon.png",
+    "48": "wallet_icon.png",
+    "128": "wallet_icon.png"
+  },
+  "browser_action": {
+    "default_icon": "wallet_icon.png",
+    "default_popup": "popup.html"
+  },
+  "permissions": ["activeTab", "tabs", "storage"],
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.google.by/*"],
+      "js": ["script.js", "jquery-2.0.3.min.js"],
+      "run_at": "document_end"
+    }
+  ]
+}

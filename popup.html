@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+
+    <script src="jquery-2.0.3.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/popup.js"></script>
+
+    <!-- Cascading Style Sheets -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="css/custom.css" rel="stylesheet" media="screen">
+
+
+</head>
+<body>
+    <div class="container">
+        <div class="params-group">
+            <div><span class="wallet-params">Pending Balance:</span> <span class="wallet-value">2xmr</span></div>
+            <div>
+                <span class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span>XMR / </span><span id="currency">GBP</span>
+                    </button>
+                    <span class="dropdown-menu" aria-labelledby="dropdownMenu2" id="dropdown-menu">
+                        <button class="dropdown-item btn btn-link" type="button">GBR</button>
+                        <button class="dropdown-item btn btn-link" type="button">USD</button>
+                        <button class="dropdown-item btn btn-link" type="button">EUR</button>
+                    </span>
+                </span>
+                <span class="wallet-value">4.33 KH/sec</span>
+            </div>
+        </div>
+
+        <div class="button-group">
+            <button class="btn btn-primary" id="withdraw">WITHDRAW</button>
+            <button class="btn btn-primary">DEPOSIT</button>
+        </div>
+    </div>
+</body>
+</html>
