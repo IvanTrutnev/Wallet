@@ -12,13 +12,9 @@ console.log('hello');
 
 function getStorage() {
   chrome.storage.local.get(['currency'], function (result) {
-
-    if (Object.keys(result).length) {
-      console.log(result)
-    }
+    console.log(result);
   });
 }
 
 getStorage();
-
 

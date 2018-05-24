@@ -15,9 +15,10 @@
 </head>
 <body>
     <div class="container">
-        <div class="params-group">
-            <div><span class="wallet-params">Pending Balance:</span> <span class="wallet-value">2xmr</span></div>
-            <div>
+        <div id="wallet-popup">
+            <div class="params-group">
+                <div><span class="wallet-params">Pending Balance:</span> <span class="wallet-value">2xmr</span></div>
+                <div>
                 <span class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span>XMR / </span><span id="currency">GBP</span>
@@ -28,14 +29,40 @@
                         <button class="dropdown-item btn btn-link" type="button">EUR</button>
                     </span>
                 </span>
-                <span class="wallet-value">4.33 KH/sec</span>
+                    <span class="wallet-value">4.33 KH/sec</span>
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button class="btn btn-primary" id="withdraw">WITHDRAW</button>
+                <button class="btn btn-primary" id="deposit">DEPOSIT</button>
             </div>
         </div>
 
-        <div class="button-group">
-            <button class="btn btn-primary" id="withdraw">WITHDRAW</button>
-            <button class="btn btn-primary">DEPOSIT</button>
+        <div id="deposit-popup" class="align-center">
+            <div class="align-center flex title-block">
+                <h1 class="deposit-title">Deposit funds</h1>
+                <img src="close-icon.png" class="close-icon" id="close-icon">
+            </div>
+            <div class="align-center">
+                <label for="address">Copy & share an address</label>
+                <input type="text" id="address" />
+            </div>
+            <img src="qrcode.png" class="qr-code">
+
+            <div class="align-center">
+                <label for="request-sum">Request a sum</label>
+                <input type="text" id="request-sum" placeholder="XMR"/>
+                <span class="usd-value">
+                    123
+                </span>
+            </div>
+
+            <div class="next-button">
+                <button class="btn btn-primary">Next</button>
+            </div>
         </div>
+
     </div>
 </body>
 </html>
