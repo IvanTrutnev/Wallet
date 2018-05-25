@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
 
-    <script src="jquery-2.0.3.min.js"></script>
+    <script src="js/jquery-2.0.3.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/popup.js"></script>
 
@@ -17,11 +17,11 @@
     <div class="container">
         <div id="wallet-popup">
             <div class="params-group">
-                <div><span class="wallet-params">Pending Balance:</span> <span class="wallet-value">2xmr</span></div>
+                <div><span class="wallet-params">Pending Balance:</span> <span class="wallet-value" id="xmr-value">2xmr</span></div>
                 <div>
                 <span class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span>XMR / </span><span id="currency">GBP</span>
+                        <span>XMR / </span><span id="currency"></span>
                     </button>
                     <span class="dropdown-menu" aria-labelledby="dropdownMenu2" id="dropdown-menu">
                         <button class="dropdown-item btn btn-link" type="button">GBR</button>
@@ -29,7 +29,7 @@
                         <button class="dropdown-item btn btn-link" type="button">EUR</button>
                     </span>
                 </span>
-                    <span class="wallet-value">4.33 KH/sec</span>
+                    <span class="wallet-value" id="conversion-value">4.33 KH/sec</span>
                 </div>
             </div>
 
@@ -42,13 +42,13 @@
         <div id="deposit-popup" class="align-center">
             <div class="align-center flex title-block">
                 <h1 class="deposit-title">Deposit funds</h1>
-                <img src="close-icon.png" class="close-icon" id="close-icon">
+                <img src="img/close-icon.png" class="close-icon" id="close-icon">
             </div>
             <div class="align-center">
                 <label for="address">Copy & share an address</label>
                 <input type="text" id="address" />
             </div>
-            <img src="qrcode.png" class="qr-code">
+            <img src="img/qrcode.png" class="qr-code">
 
             <div class="align-center">
                 <label for="request-sum">Request a sum</label>
