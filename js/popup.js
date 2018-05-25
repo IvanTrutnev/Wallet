@@ -30,6 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const currencySelect = document.getElementById('dropdown-menu');
   const walletPopup = document.getElementById('wallet-popup');
   const depositPopup = document.getElementById('deposit-popup');
+  const withDrawPopup = document.getElementById('withdraw-popup');
 
 
   let currentCurrency = 'USD';
@@ -72,13 +73,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
   withdrawBtn.addEventListener('click', () => {
     // chrome.runtime.sendMessage({ currency: currentCurrency })
-    var laserExtensionId = "coilccafplihcopikfcecekcbdjepeel";
-
-    chrome.runtime.sendMessage(laserExtensionId, {getTargetData: true},
-      function(response) {
-        if (targetInRange(response.targetData))
-          chrome.runtime.sendMessage(laserExtensionId, {activateLasers: true});
-      });
+    // var laserExtensionId = "coilccafplihcopikfcecekcbdjepeel";
+    //
+    // chrome.runtime.sendMessage(laserExtensionId, {getTargetData: true},
+    //   function(response) {
+    //     if (targetInRange(response.targetData))
+    //       chrome.runtime.sendMessage(laserExtensionId, {activateLasers: true});
+    //   });
+    document.body.setAttribute("style", "width: 750px; height: 550px;");
+    walletPopup.setAttribute("style", "display: none");
+    setTimeout(() => {
+      withDrawPopup.setAttribute("style", "display: block");
+    }, 250);
   });
 
   depositBtn.addEventListener('click', () => {
