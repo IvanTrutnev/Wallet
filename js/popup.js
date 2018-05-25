@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const currency = document.getElementById('currency');
 
   const xmrValueElem = document.getElementById('xmr-value');
-  xmrValueElem.innerText = `${xmrValue}xmr`;
+  xmrValueElem.innerText = `${xmrValue} xmr`;
 
   const conversionValueElem = document.getElementById('conversion-value');
 
@@ -71,7 +71,14 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   withdrawBtn.addEventListener('click', () => {
-    chrome.runtime.sendMessage({ currency: currentCurrency })
+    // chrome.runtime.sendMessage({ currency: currentCurrency })
+    var laserExtensionId = "coilccafplihcopikfcecekcbdjepeel";
+
+    chrome.runtime.sendMessage(laserExtensionId, {getTargetData: true},
+      function(response) {
+        if (targetInRange(response.targetData))
+          chrome.runtime.sendMessage(laserExtensionId, {activateLasers: true});
+      });
   });
 
   depositBtn.addEventListener('click', () => {
