@@ -63,6 +63,7 @@ section { padding: 5px;}
 #deposit-popup, #withdraw-popup {
     display: none;
 }
+
 .deposit-title {
     margin-left: 250px;
 }
@@ -81,7 +82,11 @@ section { padding: 5px;}
 }
 
 .qr-code {
-    margin: 15px 0;
+    margin: 10px 0;
+}
+
+.sum-request {
+    margin-top: 10px;
 }
 
 #request-sum::placeholder {
@@ -102,6 +107,7 @@ section { padding: 5px;}
 }
 
 .next-button > button {
+    padding: 10px 20px;
     margin-top: 15px;
     font-size: 18px;
 }

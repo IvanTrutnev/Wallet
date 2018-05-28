@@ -1,12 +1,3 @@
-
-const hideElementObject = {
-  display: 'none'
-};
-
-const showElementObject = {
-  display: 'block'
-};
-
 const loadData = (url) => {
   return new Promise((resolve) => {
     const xhr = new XMLHttpRequest();
@@ -21,10 +12,14 @@ const loadData = (url) => {
 
 let xmrValue = 4;
 
+const fullPopup = "width: 750px; height: 550px;";
+const hideElem = "display: none";
+
 document.addEventListener('DOMContentLoaded', function() {
   const withdrawBtn = document.getElementById('withdraw');
   const depositBtn = document.getElementById('deposit');
-  const closeBtn = document.getElementById('close-icon');
+  const closeDepositBtn = document.getElementById('close-deposit-icon');
+  const closeWithDrawBtn = document.getElementById('close-withdraw-icon');
 
 
   const currencySelect = document.getElementById('dropdown-menu');
@@ -96,12 +91,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
   });
 
-  closeBtn.addEventListener('click', () => {
+  closeDepositBtn.addEventListener('click', () => {
     document.body.setAttribute("style", "width: 250px; height: 300px;");
     depositPopup.setAttribute("style", "display: none");
     setTimeout(() => {
       walletPopup.setAttribute("style", "display: block");
     }, 250);
-  })
+  });
+
+  closeWithDrawBtn.addEventListener('click', () => {
+    document.body.setAttribute("style", "width: 250px; height: 300px;");
+    withDrawPopup.setAttribute("style", "display: none");
+    setTimeout(() => {
+      walletPopup.setAttribute("style", "display: block");
+    }, 250);
+  });
+
 
 });
