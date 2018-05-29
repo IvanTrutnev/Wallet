@@ -14,10 +14,11 @@ let xmrValue = 4;
 
 const fullPopup = "width: 750px; height: 550px;";
 const hideElem = "display: none";
+const showElem = "display: block";
 
 document.addEventListener('DOMContentLoaded', function() {
-  const withdrawBtn = document.getElementById('withdraw');
-  const depositBtn = document.getElementById('deposit');
+  const withdrawOpenBtn = document.getElementById('open-withdraw');
+  const depositOpenBtn = document.getElementById('open-deposit');
   const closeDepositBtn = document.getElementById('close-deposit-icon');
   const closeWithDrawBtn = document.getElementById('close-withdraw-icon');
 
@@ -66,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
     conversionCurrency();
   });
 
-  withdrawBtn.addEventListener('click', () => {
+  withdrawOpenBtn.addEventListener('click', () => {
     // chrome.runtime.sendMessage({ currency: currentCurrency })
     // var laserExtensionId = "coilccafplihcopikfcecekcbdjepeel";
     //
@@ -75,35 +76,37 @@ document.addEventListener('DOMContentLoaded', function() {
     //     if (targetInRange(response.targetData))
     //       chrome.runtime.sendMessage(laserExtensionId, {activateLasers: true});
     //   });
-    document.body.setAttribute("style", "width: 750px; height: 550px;");
-    walletPopup.setAttribute("style", "display: none");
+    document.body.setAttribute("style", "width: 750px; height: 350px;");
+    walletPopup.setAttribute("style", hideElem);
     setTimeout(() => {
-      withDrawPopup.setAttribute("style", "display: block");
+      withDrawPopup.setAttribute("style", showElem);
     }, 250);
   });
 
-  depositBtn.addEventListener('click', () => {
+  depositOpenBtn.addEventListener('click', () => {
     document.body.setAttribute("style", "width: 750px; height: 550px;");
-    walletPopup.setAttribute("style", "display: none");
+    walletPopup.setAttribute("style", hideElem);
     setTimeout(() => {
-      depositPopup.setAttribute("style", "display: block");
+      depositPopup.setAttribute("style", showElem);
     }, 250);
-
+    // chrome.tabs.create({'url': chrome.extension.getURL('index.html'), "selected": true}, function(tab) {
+    //   // Tab opened.
+    // });
   });
 
   closeDepositBtn.addEventListener('click', () => {
-    document.body.setAttribute("style", "width: 250px; height: 300px;");
-    depositPopup.setAttribute("style", "display: none");
+    document.body.setAttribute("style", "width: 300px; height: 250px;");
+    depositPopup.setAttribute("style", hideElem);
     setTimeout(() => {
-      walletPopup.setAttribute("style", "display: block");
+      walletPopup.setAttribute("style", showElem);
     }, 250);
   });
 
   closeWithDrawBtn.addEventListener('click', () => {
-    document.body.setAttribute("style", "width: 250px; height: 300px;");
-    withDrawPopup.setAttribute("style", "display: none");
+    document.body.setAttribute("style", "width: 300px; height: 250px;");
+    withDrawPopup.setAttribute("style", hideElem);
     setTimeout(() => {
-      walletPopup.setAttribute("style", "display: block");
+      walletPopup.setAttribute("style", showElem);
     }, 250);
   });
 
