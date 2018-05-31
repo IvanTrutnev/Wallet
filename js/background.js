@@ -9,5 +9,6 @@ chrome.runtime.onInstalled.addListener(function() {
 });
 
 chrome.runtime.onMessage.addListener(function(message, sender, reply) {
-  alert(message.currency);
+  //alert(message.currency);
+  alert(message.text)
 });
