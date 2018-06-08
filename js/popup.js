@@ -10,7 +10,7 @@ const loadData = (url) => {
   })
 };
 
-let xmrValue = 4;
+let xmrValue;
 
 const fullPopup = "width: 750px; height: 550px;";
 const hideElem = "display: none";
@@ -33,38 +33,68 @@ document.addEventListener('DOMContentLoaded', function() {
   const currency = document.getElementById('currency');
 
   const xmrValueElem = document.getElementById('xmr-value');
-  xmrValueElem.innerText = `${xmrValue} xmr`;
+  //xmrValueElem.innerText = `${xmrValue} xmr`;
 
   const conversionValueElem = document.getElementById('conversion-value');
 
+  let userAddress = 'admin';
 
   const conversionCurrency = () => {
     loadData(`https://min-api.cryptocompare.com/data/price?fsym=XMR&tsyms=${currentCurrency}`)
       .then((response) => {
-        console.log(xmrValue * response[currentCurrency]);
-        conversionValueElem.innerText = `${xmrValue * response[currentCurrency]} ${currentCurrency}`
+        conversionValueElem.innerText = `${(xmrValue * response[currentCurrency]).toFixed(3)} ${currentCurrency}`
       })
   };
 
   function getStorage() {
-    chrome.storage.local.get(['currency'], function (result) {
-      if(result.currency) {
-        currentCurrency = result.currency;
-      }
-      currency.innerText = currentCurrency;
-      conversionCurrency();
-    });
+    // chrome.storage.local.get(['currency'], function (result) {
+    //   if(result.currency) {
+    //     currentCurrency = result.currency;
+    //   }
+    //   currency.innerText = currentCurrency;
+    //   conversionCurrency();
+    // });
+    currentCurrency = localStorage.getItem('currency') ? localStorage.getItem('currency'): 'USD';
+    currency.innerText = currentCurrency;
+    conversionCurrency();
   }
   getStorage();
 
+  const getUserInfo = (userAddress) => {
+    loadData(`http://94.130.229.152:3002/user/${userAddress}`)
+      .then((response) => {
+
+        let userInfo = response;
+        localStorage.setItem('user', JSON.stringify(userInfo));
+
+        var laserExtensionId = "coilccafplihcopikfcecekcbdjepeel";
+
+        chrome.runtime.sendMessage(laserExtensionId, {getTargetData: true},
+          function(response) {
+            //if (targetInRange(response.targetData))
+              chrome.runtime.sendMessage(laserExtensionId, userInfo);
+          });
+
+        xmrValue = userInfo.balance;
+        xmrValueElem.innerText = `${xmrValue} xmr`;
+      }).then(() => {
+      conversionCurrency();
+    })
+  };
+  getUserInfo(userAddress);
+
+
   currencySelect.addEventListener('click', function(e) {
     console.log('click');
-    currentCurrency = e.target.innerText;
+    console.log(e);
+    if(!e.target.innerText.includes(' ')) {
+      currentCurrency = e.target.innerText;
+      currency.innerText = currentCurrency;
+      //chrome.storage.local.set({'currency': currentCurrency}, null);
+      localStorage.setItem('currency', currentCurrency);
 
-    currency.innerText = currentCurrency;
-    chrome.storage.local.set({'currency': currentCurrency}, null);
-
-    conversionCurrency();
+      conversionCurrency();
+    }
   });
 
   withdrawOpenBtn.addEventListener('click', () => {
